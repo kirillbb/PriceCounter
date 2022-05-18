@@ -6,7 +6,7 @@
         {
             Menu(ChooseMenuItem());
         }
-        private static void Menu(int menuItem)
+        public static void Menu(int menuItem)
         {
             switch (menuItem)
             {
@@ -31,18 +31,21 @@
                 case 7:
                     Logic.FindClientByPhoneNumber();
                     break;
+                case 0:
+                    Console.Clear();
+                    Menu(ChooseMenuItem());
+                    break;
                 default:
                     Menu(ChooseMenuItem());
                     break;
             }
         }
 
-        private static int ChooseMenuItem()
+        public static int ChooseMenuItem()
         {
             int menuItem;
             do
             {
-                Console.Clear();
                 PrintMenu();
             } while (!int.TryParse(Console.ReadLine(), out menuItem));
                 
@@ -59,6 +62,7 @@
             Console.WriteLine("5. Добавить клиента");
             Console.WriteLine("6. Отобразить список клиентов на экране");
             Console.WriteLine("7. Поиск клиента по номеру телефона");
+            Console.WriteLine("0. Очистить консоль");
         }
     }
 }

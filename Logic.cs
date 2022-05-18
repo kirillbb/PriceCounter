@@ -10,22 +10,26 @@ namespace PriceCounter
     {
         internal static void Calculate()
         {
-            throw new NotImplementedException();
+
+            EndOfService();
         }
 
         internal static void PrintPrices()
         {
-            throw new NotImplementedException();
+
+            EndOfService();
         }
 
         internal static void DisplayPrices()
         {
-            throw new NotImplementedException();
+
+            EndOfService();
         }
 
         internal static void AddServices()
         {
-            throw new NotImplementedException();
+
+            EndOfService();
         }
 
         internal static void DisplayClients()
@@ -39,6 +43,8 @@ namespace PriceCounter
                     Console.WriteLine($"{client.Name} - {client.Phone} - {client.Address}");
                 }
             }
+
+            EndOfService();
         }
 
         internal static void FindClientByPhoneNumber()
@@ -48,14 +54,28 @@ namespace PriceCounter
 
             using (ventilUAContext db = new ventilUAContext())
             {
-                var clients = db.Clients.ToList()
-                    .Where(client => client.Phone == phoneNumber);
-
-                foreach (Client client in clients)
+                try
                 {
-                    Console.WriteLine($"{client.Name} - {client.Phone} - {client.Address}");
+                    var client = db.Clients.ToList()
+                        .Where(client => client.Phone == phoneNumber)
+                        .ToArray();
+
+                    Console.WriteLine($"{client[0].Name} - {client[0].Phone} - {client[0].Address}");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Incorrect number, or client not found!");
                 }
             }
+
+            EndOfService();
+        }
+
+        private static void EndOfService()
+        {
+            Console.WriteLine("To continue, press the enter key");
+            Console.ReadLine();
+            Starter.Menu(Starter.ChooseMenuItem());
         }
 
         internal static void AddClient()
@@ -71,13 +91,17 @@ namespace PriceCounter
 
                 var clients = db.Clients.ToList();
 
-                db.Clients.Add(new Client {
-                    Id = clients.Count,
-                    Name = name, 
-                    Phone = phone, 
-                    Address = address });
-                db.SaveChanges();
+                    db.Clients.Add(new Client
+                    {
+                        Id = clients.Count,
+                        Name = name,
+                        Phone = phone,
+                        Address = address
+                    });
+                    db.SaveChanges();
             }
+
+            EndOfService();
         }
     }
 }
