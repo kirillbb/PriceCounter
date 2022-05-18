@@ -27,5 +27,15 @@ namespace PriceCounter
         {
             throw new NotImplementedException();
         }
+
+        internal static void DisplayClients()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void AddClient()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

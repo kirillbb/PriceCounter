@@ -22,6 +22,12 @@
                 case 4:
                     Logic.AddServices();
                     break;
+                case 5:
+                    Logic.AddClient();
+                    break;
+                case 6:
+                    Logic.DisplayClients();
+                    break;
                 default:
                     Menu(ChooseMenuItem());
                     break;
@@ -43,10 +49,12 @@
         private static void PrintMenu()
         {
             Console.WriteLine("-- Выберите пункт меню, нажав нужный номер и Enter --");
-            Console.WriteLine("1. Вывод всех цен на экран");
-            Console.WriteLine("2. Вывод всех цен в файл .txt");
+            Console.WriteLine("1. Отобразить все услуги на экране");
+            Console.WriteLine("2. Отобразить все услуги в файл .txt");
             Console.WriteLine("3. Составить смету");
             Console.WriteLine("4. Добавить услугу");
-        } 
+            Console.WriteLine("5. Добавить клиента");
+            Console.WriteLine("6. Отобразить список клиентов на экране");
+        }
     }
 }
