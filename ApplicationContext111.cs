@@ -9,7 +9,7 @@ namespace PriceCounter
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=ventilUA.dbo");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-6KJ2COE\SQLEXPRESS;Initial Catalog=ventilUA;Integrated Security=True");
         }
     }
 }

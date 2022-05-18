@@ -30,12 +30,43 @@ namespace PriceCounter
 
         internal static void DisplayClients()
         {
-            throw new NotImplementedException();
+            using (ventilUAContext db = new ventilUAContext())
+            {
+               
+
+                var clients = db.Clients.ToList();
+                Console.WriteLine("Список клиентов:");
+                foreach (Client client in clients)
+                {
+                    Console.WriteLine($"{client.Name} - {client.Phone} - {client.Address}");
+                }
+            }
         }
 
         internal static void AddClient()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("");
+            using (ventilUAContext db = new ventilUAContext())
+            {
+                Console.WriteLine("Enter a name of new client:");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter a phone of new client:");
+                string phone = Console.ReadLine();
+                Console.WriteLine("Enter an adress of new client:");
+                string address = Console.ReadLine();
+
+                var clients = db.Clients.ToList();
+
+                
+
+                db.Clients.Add(new Client {
+                    Id = clients.Count,
+                    Name = name, 
+                    Phone = phone, 
+                    Address = address });
+                db.SaveChanges();
+
+            }
         }
     }
 }
