@@ -28,6 +28,9 @@
                 case 6:
                     Logic.DisplayClients();
                     break;
+                case 7:
+                    Logic.FindClientByPhoneNumber();
+                    break;
                 default:
                     Menu(ChooseMenuItem());
                     break;
@@ -55,6 +58,7 @@
             Console.WriteLine("4. Добавить услугу");
             Console.WriteLine("5. Добавить клиента");
             Console.WriteLine("6. Отобразить список клиентов на экране");
+            Console.WriteLine("7. Поиск клиента по номеру телефона");
         }
     }
 }

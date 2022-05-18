@@ -32,8 +32,6 @@ namespace PriceCounter
         {
             using (ventilUAContext db = new ventilUAContext())
             {
-               
-
                 var clients = db.Clients.ToList();
                 Console.WriteLine("Список клиентов:");
                 foreach (Client client in clients)
@@ -43,9 +41,25 @@ namespace PriceCounter
             }
         }
 
+        internal static void FindClientByPhoneNumber()
+        {
+            Console.WriteLine("Enter the phone number of the client you want to find:");
+            string phoneNumber = Console.ReadLine();
+
+            using (ventilUAContext db = new ventilUAContext())
+            {
+                var clients = db.Clients.ToList()
+                    .Where(client => client.Phone == phoneNumber);
+
+                foreach (Client client in clients)
+                {
+                    Console.WriteLine($"{client.Name} - {client.Phone} - {client.Address}");
+                }
+            }
+        }
+
         internal static void AddClient()
         {
-            Console.WriteLine("");
             using (ventilUAContext db = new ventilUAContext())
             {
                 Console.WriteLine("Enter a name of new client:");
@@ -57,15 +71,12 @@ namespace PriceCounter
 
                 var clients = db.Clients.ToList();
 
-                
-
                 db.Clients.Add(new Client {
                     Id = clients.Count,
                     Name = name, 
                     Phone = phone, 
                     Address = address });
                 db.SaveChanges();
-
             }
         }
     }
