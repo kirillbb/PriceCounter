@@ -7,6 +7,8 @@ namespace PriceCounter
 {
     public partial class ventilUAContext : DbContext
     {
+        string connectionString = 
+            "Data Source=DESKTOP-6KJ2COE\\SQLEXPRESS;Initial Catalog=ventilUA;Integrated Security=True";
         public ventilUAContext()
         {
         }
@@ -23,7 +25,7 @@ namespace PriceCounter
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-6KJ2COE\\SQLEXPRESS;Initial Catalog=ventilUA;Integrated Security=True");
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 
@@ -46,9 +48,9 @@ namespace PriceCounter
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Услуга).HasMaxLength(50);
+                entity.Property(e => e.Work).HasMaxLength(50);
 
-                entity.Property(e => e.Цена).HasColumnType("money");
+                entity.Property(e => e.Price).HasColumnType("money");
             });
 
             OnModelCreatingPartial(modelBuilder);

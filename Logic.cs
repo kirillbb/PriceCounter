@@ -14,15 +14,24 @@ namespace PriceCounter
             EndOfService();
         }
 
-        internal static void PrintPrices()
+        internal static void PrintServices()
         {
 
             EndOfService();
         }
 
-        internal static void DisplayPrices()
+        internal static void DisplayServices()
         {
+            Console.WriteLine("Список услуг:");
 
+            using (ventilUAContext db = new ventilUAContext())
+            {
+                var services = db.Services.ToList();
+                foreach (Service service in services)
+                {
+                    Console.WriteLine($"{service.Work} - {service.Price} - {service.Count}");
+                }
+            }
             EndOfService();
         }
 
@@ -34,10 +43,11 @@ namespace PriceCounter
 
         internal static void DisplayClients()
         {
+            Console.WriteLine("Список клиентов:");
+
             using (ventilUAContext db = new ventilUAContext())
             {
                 var clients = db.Clients.ToList();
-                Console.WriteLine("Список клиентов:");
                 foreach (Client client in clients)
                 {
                     Console.WriteLine($"{client.Name} - {client.Phone} - {client.Address}");

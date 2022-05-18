@@ -11,10 +11,10 @@
             switch (menuItem)
             {
                 case 1:
-                    Logic.DisplayPrices();
+                    Logic.DisplayServices();
                     break;
                 case 2:
-                    Logic.PrintPrices();
+                    Logic.PrintServices();
                     break;
                 case 3:
                     Logic.Calculate();
