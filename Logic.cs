@@ -26,10 +26,10 @@ namespace PriceCounter
 
             using (ventilUAContext db = new ventilUAContext())
             {
-                var services = db.Services.ToList();
-                foreach (Service service in services)
+                var services = db.Works.ToList();
+                foreach (Work service in services)
                 {
-                    Console.WriteLine($"{service.Work} - {service.Price} - {service.Count}");
+                    Console.WriteLine($"{service.TheWork} - {service.Price}");
                 }
             }
             EndOfService();
@@ -37,6 +37,25 @@ namespace PriceCounter
 
         internal static void AddServices()
         {
+            using (ventilUAContext db = new ventilUAContext())
+            {
+                Console.WriteLine("Enter name of new service:");
+                string theWork = Console.ReadLine();
+                Console.WriteLine("Enter a price of new service:");
+                decimal price = 0;
+                bool resultOfParse = decimal.TryParse(Console.ReadLine(), out price);
+
+                var works = db.Works.ToList();
+
+                db.Works.Add(new Work
+                {
+                    Id = works.Count,
+                    TheWork = theWork,
+                    Price = price,
+                });
+
+                db.SaveChanges();
+            }
 
             EndOfService();
         }
@@ -81,13 +100,6 @@ namespace PriceCounter
             EndOfService();
         }
 
-        private static void EndOfService()
-        {
-            Console.WriteLine("To continue, press the enter key");
-            Console.ReadLine();
-            Starter.Menu(Starter.ChooseMenuItem());
-        }
-
         internal static void AddClient()
         {
             using (ventilUAContext db = new ventilUAContext())
@@ -112,6 +124,13 @@ namespace PriceCounter
             }
 
             EndOfService();
+        }
+
+        private static void EndOfService()
+        {
+            Console.WriteLine("To continue, press the enter key");
+            Console.ReadLine();
+            Starter.Menu(Starter.ChooseMenuItem());
         }
     }
 }

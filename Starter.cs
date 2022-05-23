@@ -17,10 +17,10 @@
                     Logic.PrintServices();
                     break;
                 case 3:
-                    Logic.Calculate();
+                    Logic.AddServices();
                     break;
                 case 4:
-                    Logic.AddServices();
+                    Logic.Calculate();
                     break;
                 case 5:
                     Logic.AddClient();
@@ -57,8 +57,8 @@
             Console.WriteLine("-- Выберите пункт меню, нажав нужный номер и Enter --");
             Console.WriteLine("1. Отобразить все услуги на экране");
             Console.WriteLine("2. Отобразить все услуги в файл .txt");
-            Console.WriteLine("3. Составить смету");
-            Console.WriteLine("4. Добавить услугу");
+            Console.WriteLine("3. Добавить услугу");
+            Console.WriteLine("4. Составить смету");
             Console.WriteLine("5. Добавить клиента");
             Console.WriteLine("6. Отобразить список клиентов на экране");
             Console.WriteLine("7. Поиск клиента по номеру телефона");

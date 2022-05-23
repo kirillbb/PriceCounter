@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace PriceCounter
 {
     public partial class ventilUAContext : DbContext
     {
-        string connectionString = 
-            "Data Source=DESKTOP-6KJ2COE\\SQLEXPRESS;Initial Catalog=ventilUA;Integrated Security=True";
         public ventilUAContext()
         {
         }
@@ -19,13 +14,13 @@ namespace PriceCounter
         }
 
         public virtual DbSet<Client> Clients { get; set; } = null!;
-        public virtual DbSet<Service> Services { get; set; } = null!;
+        public virtual DbSet<Work> Works { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder.UseSqlServer(ConnectionStringBuilder.Build());
             }
         }
 
@@ -38,17 +33,16 @@ namespace PriceCounter
                 entity.Property(e => e.Address).HasMaxLength(50);
 
                 entity.Property(e => e.Name)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Phone).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<Service>(entity =>
+            modelBuilder.Entity<Work>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Work).HasMaxLength(50);
+                entity.Property(e => e.TheWork).HasMaxLength(50);
 
                 entity.Property(e => e.Price).HasColumnType("money");
             });
