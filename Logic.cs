@@ -83,6 +83,7 @@ namespace PriceCounter
             clientInfo = Console.ReadLine();
             Console.WriteLine($"Enter a phone of {clientInfo}:");
             clientInfo += "_" + Console.ReadLine();
+            clientInfo += "_" + DateTime.Now.ToString("d");
             string path = $"{clientInfo}.txt";
 
             using (File.Create(path))
