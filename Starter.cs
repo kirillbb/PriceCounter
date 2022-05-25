@@ -11,25 +11,25 @@
             switch (menuItem)
             {
                 case 1:
-                    Logic.DisplayServices();
+                    Logic.DisplayServicesAsync();
                     break;
                 case 2:
                     Logic.PrintServices();
                     break;
                 case 3:
-                    Logic.AddServices();
+                    Logic.AddServicesAsync();
                     break;
                 case 4:
-                    Logic.Calculate();
+                    Logic.AddClientAsync();
                     break;
                 case 5:
-                    Logic.AddClient();
+                    Logic.DisplayClientsAsync();
                     break;
                 case 6:
-                    Logic.DisplayClients();
+                    Logic.FindClientByPhoneNumberAsync();
                     break;
                 case 7:
-                    Logic.FindClientByPhoneNumber();
+                    Logic.MakeEstimateInTxt();
                     break;
                 case 0:
                     Console.Clear();
@@ -55,14 +55,16 @@
         private static void PrintMenu()
         {
             Console.WriteLine("-- Выберите пункт меню, нажав нужный номер и Enter --");
+            Console.WriteLine("-----------------------------------------------------");
             Console.WriteLine("1. Отобразить все услуги на экране");
             Console.WriteLine("2. Отобразить все услуги в файл .txt");
             Console.WriteLine("3. Добавить услугу");
-            Console.WriteLine("4. Составить смету");
-            Console.WriteLine("5. Добавить клиента");
-            Console.WriteLine("6. Отобразить список клиентов на экране");
-            Console.WriteLine("7. Поиск клиента по номеру телефона");
+            Console.WriteLine("4. Добавить клиента");
+            Console.WriteLine("5. Отобразить список клиентов на экране");
+            Console.WriteLine("6. Поиск клиента по номеру телефона");
+            Console.WriteLine("7. Составить смету и сохранить ее в файл .txt");
             Console.WriteLine("0. Очистить консоль");
+            Console.WriteLine("-----------------------------------------------------");
         }
     }
 }
