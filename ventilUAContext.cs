@@ -2,13 +2,13 @@
 
 namespace PriceCounter
 {
-    public partial class ventilUAContext : DbContext
+    public partial class VentilUAContext : DbContext
     {
-        public ventilUAContext()
+        public VentilUAContext()
         {
         }
 
-        public ventilUAContext(DbContextOptions<ventilUAContext> options)
+        public VentilUAContext(DbContextOptions<VentilUAContext> options)
             : base(options)
         {
         }
