@@ -1,4 +1,6 @@
-﻿namespace PriceCounter
+﻿using System.Diagnostics;
+
+namespace PriceCounter
 {
     public static class Starter
     {
@@ -32,8 +34,7 @@
                     Logic.MakeEstimateInTxt();
                     break;
                 case 0:
-                    Console.Clear();
-                    Menu(ChooseMenuItem());
+                    Environment.Exit(0);
                     break;
                 default:
                     Menu(ChooseMenuItem());
@@ -44,26 +45,31 @@
         public static int ChooseMenuItem()
         {
             int menuItem;
+            bool isItem = false;
             do
             {
+                if (isItem == false)
+                    Console.Clear();
                 PrintMenu();
-            } while (!int.TryParse(Console.ReadLine(), out menuItem));
+                isItem = int.TryParse(Console.ReadLine(), out menuItem);
+                
+            } while (!isItem);
                 
             return menuItem;
         } 
 
         private static void PrintMenu()
         {
-            Console.WriteLine("-- Выберите пункт меню, нажав нужный номер и Enter --");
+            Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
             Console.WriteLine("-----------------------------------------------------");
-            Console.WriteLine("1. Отобразить все услуги на экране");
-            Console.WriteLine("2. Отобразить все услуги в файл .txt");
-            Console.WriteLine("3. Добавить услугу");
-            Console.WriteLine("4. Добавить клиента");
-            Console.WriteLine("5. Отобразить список клиентов на экране");
-            Console.WriteLine("6. Поиск клиента по номеру телефона");
-            Console.WriteLine("7. Составить смету и сохранить ее в файл .txt");
-            Console.WriteLine("0. Очистить консоль");
+            Console.WriteLine("[1] Display all services on the screen");
+            Console.WriteLine("[2] Display all services in a .txt file");
+            Console.WriteLine("[3] Add service");
+            Console.WriteLine("[4] Add a client");
+            Console.WriteLine("[5] Display a list of clients on the screen");
+            Console.WriteLine("[6] Searching for a customer by phone number");
+            Console.WriteLine("[7] Make an estimate and save it as a .txt file");
+            Console.WriteLine("[0] Close the program");
             Console.WriteLine("-----------------------------------------------------");
         }
     }

@@ -31,7 +31,7 @@ namespace PriceCounter
 
         internal static async Task DisplayServicesAsync()
         {
-            Console.WriteLine("Список услуг:");
+            Console.WriteLine("List of services:");
 
             await using (ventilUAContext db = new ventilUAContext())
             {
@@ -138,7 +138,7 @@ namespace PriceCounter
 
         internal static async Task DisplayClientsAsync()
         {
-            Console.WriteLine("Список клиентов:");
+            Console.WriteLine("List of clients:");
 
             await using (ventilUAContext db = new ventilUAContext())
             {
