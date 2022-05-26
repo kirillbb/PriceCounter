@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace PriceCounter
+﻿namespace PriceCounter
 {
     public static class Starter
     {
@@ -8,6 +6,7 @@ namespace PriceCounter
         {
             Menu(ChooseMenuItem());
         }
+
         public static void Menu(int menuItem)
         {
             switch (menuItem)
@@ -49,14 +48,17 @@ namespace PriceCounter
             do
             {
                 if (isItem == false)
+                {
                     Console.Clear();
+                }
+
                 PrintMenu();
                 isItem = int.TryParse(Console.ReadLine(), out menuItem);
-                
-            } while (!isItem);
-                
+            }
+            while (!isItem);
+
             return menuItem;
-        } 
+        }
 
         private static void PrintMenu()
         {
