@@ -9,9 +9,22 @@ namespace PriceCounter
     internal static class Logic
     {
 
-        internal static void PrintServices()
+        internal static async Task PrintServicesAsync()
         {
+            string path = "Services_" + DateTime.Now.ToString("d") + ".txt";
+            using (File.Create(path)) { }
+            File.WriteAllText(path, "Services\n\n", Encoding.Unicode);
 
+            await using (ventilUAContext db = new ventilUAContext())
+            {
+                var services = db.Works.ToList();
+                foreach (Work service in services)
+                {
+                    File.AppendAllText(path, $"{service.TheWork} - {service.Price}\n", Encoding.Unicode);
+                }
+            }
+            Console.WriteLine("\nThe path to the created file:");
+            Console.WriteLine(Directory.GetCurrentDirectory() + $"\\{path}\n");
 
             EndOfService();
         }
@@ -57,6 +70,11 @@ namespace PriceCounter
                 }
 
             File.AppendAllText(path, $"\nTotal price = {amountPrice} UAH", Encoding.Unicode);
+
+
+            Console.WriteLine("\nThe path to the created file:");
+            Console.WriteLine(Directory.GetCurrentDirectory() + $"\\{path}\n");
+
             EndOfService();
         }
 

@@ -14,7 +14,7 @@
                     Logic.DisplayServicesAsync();
                     break;
                 case 2:
-                    Logic.PrintServices();
+                    Logic.PrintServicesAsync();
                     break;
                 case 3:
                     Logic.AddServicesAsync();
